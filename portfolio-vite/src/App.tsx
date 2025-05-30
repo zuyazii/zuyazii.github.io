@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const ASCII_TEXTURE = `................................................................................................................................................
 .........................................................,.,,...................................................................................
@@ -53,8 +54,8 @@ const MOBILE_LINE_HEIGHT = "7px";
 const DESKTOP_FONT_SIZE = 15;
 
 const menuItems = [
-  { label: "Landing...", href: "#", current: true },
-  { label: "About_Me", href: "#about" },
+  { label: "Landing...", href: "/", current: true },
+  { label: "About_Me", href: "/about", current: false },
 ];
 
 function getCharWidth(fontSize: number, fontFamily: string) {
@@ -309,6 +310,7 @@ export default function App() {
     }
   });
   const ascii = useAsciiGlobe(isMobile, globeSize, starFieldSize);
+  const location = useLocation();
 
   // Prevent scroll when menu is open
   useEffect(() => {
@@ -381,7 +383,7 @@ export default function App() {
           flexDirection: "row",
           alignItems: "flex-end",
           justifyContent: "space-between",
-          padding: isMobile ? "0 18px" : "0 60px",
+          padding: isMobile ? "0 26px" : "0 60px",
           height: isMobile ? MENU_TOPBAR_HEIGHT : TOPBAR_HEIGHT,
           boxSizing: "border-box",
           fontSize: isMobile ? 18 : 22,
@@ -414,19 +416,19 @@ export default function App() {
             }}
           >
             {menuItems.slice(1).map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.href}
                 style={{
                   color: "#fff",
                   textDecoration: "none",
                   fontSize: 20,
                   fontFamily: "Ubuntu Mono, monospace",
-                  fontWeight: 400,
+                  fontWeight: location.pathname === item.href ? 700 : 400,
                 }}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         )}
@@ -453,7 +455,7 @@ export default function App() {
               flexDirection: "row",
               alignItems: "flex-end",
               justifyContent: "space-between",
-              padding: "0 18px",
+              padding: "0 26px",
               height: MENU_TOPBAR_HEIGHT,
               fontSize: 18,
             }}
@@ -479,10 +481,11 @@ export default function App() {
             }}
           >
             {menuItems.map((item) => (
-              <div
+              <Link
                 key={item.label}
+                to={item.href}
                 style={{
-                  fontWeight: item.current ? 700 : 400,
+                  fontWeight: location.pathname === item.href ? 700 : 400,
                   fontSize: 20,
                   color: "#fff",
                   marginBottom: 0,
@@ -492,20 +495,22 @@ export default function App() {
                   marginLeft: 0,
                   letterSpacing: 0,
                   minHeight: 32,
+                  textDecoration: "none",
                 }}
+                onClick={() => setMenuOpen(false)}
               >
                 <span
                   style={{
                     width: 18,
                     display: "inline-block",
                     textAlign: "left",
-                    fontWeight: item.current ? 700 : 400,
+                    fontWeight: location.pathname === item.href ? 700 : 400,
                   }}
                 >
-                  {item.current ? ">" : ""}
+                  {location.pathname === item.href ? ">" : ""}
                 </span>
                 <span>{item.label}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
