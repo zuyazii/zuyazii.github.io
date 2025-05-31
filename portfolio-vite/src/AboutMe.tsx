@@ -583,7 +583,7 @@ If contact forms aren't your thing... send me an email at `}
                 <input
                   name="email"
                   type="email"
-                  placeholder="hello@arnau.design"
+                  placeholder="hello@email.com"
                   required
                   style={{
                     ...inputStyle,
