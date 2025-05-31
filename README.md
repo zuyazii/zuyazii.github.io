@@ -26,19 +26,6 @@ This repository contains my personal portfolio website, featuring a unique anima
 asciiart.py        # Python script for generating ASCII art from images
 ```
 
-## How to Run
-
-1. Install dependencies:
-   ```sh
-   cd portfolio-vite
-   npm install
-   ```
-2. Start the development server:
-   ```sh
-   npm run dev
-   ```
-3. Open your browser to the local server URL (usually http://localhost:5173).
-
 ## Credits
 
 - **ASCII Art Spinning Globe**: Inspired by [this Reddit post on r/PowerShell](https://www.reddit.com/r/PowerShell/comments/17iy8so/3d_ascii_earth/) for the ASCII art and code for the spinning globe.
